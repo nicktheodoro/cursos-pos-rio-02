@@ -1,0 +1,4 @@
+PascalCase -> ExemploPascalCase
+camelCase -> exemploCamelCase
+snake_case -> exemplo_snake_case
+kebab-case -> exemplo-kebab-case
