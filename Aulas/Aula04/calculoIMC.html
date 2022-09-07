@@ -1,0 +1,20 @@
+<script>
+  let peso = parseFloat(prompt("Digite o seu peso: "))
+let altura = parseFloat(prompt("Digite a sua altura: "))
+
+let imc = parseFloat((peso / (altura * altura)).toFixed(2))
+
+if (imc < 18.5) {
+  alert(`IMC: ${imc}, você está abaixo do peso`)
+} else if (imc < 25) {
+  alert(`IMC: ${imc}, peso normal`)
+} else if (imc < 30) {
+  alert(`IMC: ${imc}, sobrepeso`)
+} else if (imc < 35) {
+  alert(`IMC: ${imc}, obesidade I`)
+} else if (imc < 40) {
+  alert(`IMC: ${imc}, obesidade II`)
+} else if (imc < 45) {
+  alert(`IMC: ${imc}, obesidade III`)
+}
+</script>
