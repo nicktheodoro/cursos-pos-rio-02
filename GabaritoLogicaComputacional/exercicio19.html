@@ -1,0 +1,19 @@
+<script>
+  /*
+    Modifique o programa anterior para imprimir todos os números ímpares de 1 até
+n.
+  */
+
+  let numero = parseFloat(
+    prompt("Digite até que número deseja imprimir na tela:")
+  );
+
+  for (let i = 1; i <= numero; i++) {
+    if (i % 2 != 0) {
+      // Operador ternário, se lê da seguinte maneiro:
+      // i igual a 1 ? se for verdadeiro executa o primeiro bloco de código antes do ":",
+      // se for falso executa o bloco de código após os ":"
+      i == num ? document.write(`${i}.`) : document.write(`${i}, `);
+    }
+  }
+</script>

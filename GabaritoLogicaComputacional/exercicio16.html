@@ -2,8 +2,40 @@
   /*
    Escreva um programa que funcione como uma calculadora simples de soma (+),
    subtração(-), multiplicação(*) e divisão(/)
-
-   SUBIR POSTERIORMENTE - ME LEMBREM
   */
 
+  let numero1 = parseFloat(prompt("Digite o primeiro número: "));
+  let operacao = prompt("Digite a operação desejada")
+    .trim()
+    .toUpperCase()
+    .substring(0, 1);
+  let numero2 = parseFloat(prompt("Digite o segundo número: "));
+  let resultado;
+
+  let operacaoValida = true;
+
+  switch (operacao) {
+    case "+":
+      resultado = numero1 + numero2;
+      break;
+    case "-":
+      resultado = numero1 - numero2;
+      break;
+    case "*":
+      resultado = numero1 * numero2;
+      break;
+    case "/":
+      resultado = numero1 / numero2;
+      break;
+    default:
+      operacaoValida = false;
+      document.write(
+        "<h1>Operação inválida, atualize a paágina e tente novamente.</h1>"
+      );
+      break;
+  }
+
+  if (operacaoValida) {
+    document.write(`<h1>${numero1} ${operacao} ${numero2} = ${resultado}</h1>`);
+  }
 </script>

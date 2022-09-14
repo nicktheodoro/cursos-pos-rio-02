@@ -1,17 +1,31 @@
 <script>
   /*
-    Escreva um programa que encontre a soma de dígitos de um
-    número.
+    Implemente um programa tomador de decisão que considera as seguintes opções para determinar se o usuário usará a fila preferencial ou a fila comum.
   */
 
-  let numero = parseFloat(prompt("Digite um número: "));
-  let soma = 0;
-  
-  while (numero != 0) {
-    soma += numero % 10;
-    numero = parseInt(numero / 10);
+  let idade = parseFloat(prompt("Qual a sua idade: "));
+  let sexo = prompt("Qual o seu sexo ('F' ou 'M'): ")
+    .trim()
+    .slice(0, 1)
+    .toUpperCase();
+  let condicaoEspecial = prompt("Tem condição  especial ('S' ou 'N'): ")
+    .trim()
+    .slice(0, 1)
+    .toUpperCase();
+
+  if (sexo == "M") {
+    if (idade >= 60 || condicaoEspecial == "S") {
+      document.write("<h1>Fila Preferencial</h1>");
+    } else {
+      document.write("<h1>Sem Fila Preferencial</h1>");
+    }
+  } else if (sexo == "F") {
+    if (idade >= 60 || condicaoEspecial == "S") {
+      document.write("<h1>Fila Preferencial</h1>");
+    } else {
+      document.write("<h1>Sem Fila Preferencial</h1>");
+    }
+  } else {
+    document.write("<h1>Dados Inválidos, aperte f5 e tente novamete.</h1>");
   }
-
-  console.log(soma)
-
 </script>
