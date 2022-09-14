@@ -1,0 +1,17 @@
+<script>
+  /*
+    Escreva um programa que encontre a soma de dígitos de um
+    número.
+  */
+
+  let numero = parseFloat(prompt("Digite um número: "));
+  let soma = 0;
+  
+  while (numero != 0) {
+    soma += numero % 10;
+    numero = parseInt(numero / 10);
+  }
+
+  console.log(soma)
+
+</script>

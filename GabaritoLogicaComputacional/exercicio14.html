@@ -1,0 +1,29 @@
+<script>
+  /*
+    Escreva um programa para verificar se um triângulo é Equilátero, Isósceles ou
+    Escaleno.
+  */
+
+  let arestaA = 50;
+  let arestaB = 50;
+  let arestaC = 50;
+
+  let trianguloValido =
+    (arestaA + arestaB + arestaC == 180)
+    && arestaA + arestaB > arestaC
+    && arestaA + arestaC > arestaB
+    && arestaB + arestaC > arestaA;
+
+  if (trianguloValido) {
+    if (arestaA == arestaB && arestaA == arestaC) {
+      document.write("<h1>Equilátero</h1>")
+    } else if (arestaA == arestaB || arestaA == arestaC || arestaB == arestaC) {
+      document.write("<h1>Isósceles</h1>")
+    } else {
+      document.write("<h1>Escaleno</h1>")
+    }
+  } else {
+    document.write("<h1>Triângulo inválido</h1>")
+  }
+
+</script>

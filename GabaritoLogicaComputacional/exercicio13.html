@@ -1,0 +1,19 @@
+<script>
+  /*
+    Escreva um programa para verificar se um triângulo pode ser formado pelo valor
+    fornecido para os ângulos.
+  */
+
+  // Triangulos válidos tem a soma total de 180º
+  let anguloA = parseFloat(prompt("Digite o tamanho do lado A: "));
+  let anguloB = parseFloat(prompt("Digite o tamanho do lado B: "));;
+  let anguloC = parseFloat(prompt("Digite o tamanho do lado C: "));;
+
+  let somaLadosTriangulo = anguloA + anguloB + anguloC;
+
+  if (somaLadosTriangulo == 180) {
+    document.write("<h1>O triângulo é válido!</h1>")
+  } else {
+    document.write("<h1>Triângulo inválido!</h1>")
+  }
+</script>

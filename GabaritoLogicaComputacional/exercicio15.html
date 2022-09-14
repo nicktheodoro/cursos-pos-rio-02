@@ -1,0 +1,22 @@
+<script>
+  /*
+    Escreva um programa para verificar se um caractere é uma vogal ou
+    consoante.
+  */
+
+  let caractere = prompt("Digite um caracter").trim().toUpperCase().substring(0, 1);
+
+  switch (caractere) {
+    case "A":
+    case "E":
+    case "I":
+    case "O":
+    case "U":
+      document.write("É uma vogal");
+      break;
+    default:
+      document.write("É uma consoante");
+      break;
+  }
+
+</script>
