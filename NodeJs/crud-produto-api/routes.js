@@ -12,6 +12,4 @@ routes.post("/produtos", produtoController.cadastrar);
 routes.put("/produtos/:id", produtoController.atualizar);
 routes.delete("/produtos/:id", produtoController.deletar);
 
-  
-
 module.exports = routes;

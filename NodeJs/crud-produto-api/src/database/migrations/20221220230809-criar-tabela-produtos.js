@@ -20,6 +20,15 @@ module.exports = {
       qtdEstoque: {
         type: Sequelize.INTEGER,
         allowNull: false
+      },
+      criadoEm: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
+      },
+      atualizadoEm: {
+        type: Sequelize.DATE,
+        defaultValue: null,
+        allowNull: true
       }
     });
   },

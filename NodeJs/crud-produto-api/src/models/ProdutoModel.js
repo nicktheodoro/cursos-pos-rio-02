@@ -1,13 +1,20 @@
-module.exports = class ProdutoModel {
-  constructor (obj) {
-    // Proteção para garantir que sempre será criado um objeto, 
-    // mesmo que o parametro recebdido seja nulo.
-    obj = obj || {};
+const { Model, DataTypes } = require('sequelize')
 
-    // Propriedades/atributos do modelo.
-    this.id = parseInt(obj.id);
-    this.nome = obj.nome;
-    this.valor = obj.valor;
-    this.qtdEstoque = obj.qtdEstoque;
+class ProdutoModel extends Model {
+  static init(connection) {
+    super.init({
+      nome: DataTypes.STRING,
+      valor: DataTypes.DOUBLE,
+      qtdEstoque: DataTypes.INTEGER
+    },{
+      sequelize: connection,
+      schema: 'public',
+      tableName: 'produtos',
+      createdAt: 'criadoEm',
+      updatedAt: 'atualizadoEm',
+      timestamps: true
+    })
   }
 }
+
+module.exports = ProdutoModel;

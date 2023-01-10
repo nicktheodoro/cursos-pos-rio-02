@@ -1,51 +1,50 @@
 const ProdutoModel = require("../models/ProdutoModel");
+const { where } = require('sequelize');
 
-let produtos = [];
-let idAtual = 1;
-
-function obterTodos() {
-  return produtos;
+async function obterTodos() {
+  return await ProdutoModel.findAll();
 }
 
-function obterPorId(id) {
-  return produtos.find(produto => produto.id == id);
-}
+async function obterPorId(id) {
+  const produto = await ProdutoModel.findByPk(id);
 
-function cadastrar(obj) {
-  let produto = new ProdutoModel(obj);
-  produto.id = idAtual;
-
-  produtos.push(produto);
-
-  idAtual++;
+  if (!produto) {
+    throw new 'Não foi possível encontrar o produto com id ' + id;
+  }
 
   return produto;
 }
 
-function atualizar(id, obj) {
-  const index = produtos.findIndex(produto => produto.id == id);
+async function cadastrar(obj) {
+  const produto = await ProdutoModel.create(obj);
 
-  if (index < 0) {
-    return "Produto não encontrado, tente novamenete por favor."
+  if (!produto) {
+    throw new 'Não foi possível cadastrar o produto';
   }
 
-  const produto = { id: parseInt(id), ...obj };
-
-  produtos.splice(index, 1, produto);
-
-  return produto
+  return produto;
 }
 
-function deletar(id) {
-  const index = produtos.findIndex(produto => produto.id == id);
+async function atualizar(id, obj) {
+  const produto = await obterPorId(id);
 
-  if (index < 0) {
-    return "Produto não encontrado, tente novamenete por favor."
+  const atualizado = await ProdutoModel.update(obj, { where: { id } });
+
+  if (!atualizado) {
+    throw new 'Não foi possível atualizar o produto';
   }
 
-  produtos.splice(index, 1);
+  return obj;
+}
 
-  return id
+async function deletar(id) {
+  const produto = await ProdutoModel.destroy({ where: { id } });
+
+  if (!produto) {
+    throw new 'Não foi possível deletar o produto';
+  }
+
+  return id;
 }
 
 module.exports = {

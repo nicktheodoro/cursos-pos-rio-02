@@ -1,34 +1,51 @@
 const produtoService = require("../services/ProdutoService");
 
 class ProdutoController {
-  obterPorTodos(req, res) {
-    let produtos = produtoService.obterTodos();
+  async obterPorTodos(req, res) {
+    try {
+      const produtos = await produtoService.obterTodos();
 
-    return res.json(produtos);
+      return res.json(produtos);
+    } catch (error) {
+      console.error(error);
+    }
   }
-  obterPorId(req, res) {
+  async obterPorId(req, res) {
     const { id } = req.params;
+    try {
+      const produto = await produtoService.obterPorId(id);
 
-    let produto = produtoService.obterPorId(id);
-
-    return res.json(produto);
+      return res.json(produto);
+    } catch (error) {
+      console.error(error);
+    }
   }
-  cadastrar(req, res) {
-    let produto = produtoService.cadastrar(req.body);
+  async cadastrar(req, res) {
+    try {
+      const produto = await produtoService.cadastrar(req.body);
 
-    return res.json(produto);
+      return res.json(produto);
+    } catch (error) {
+      console.error(error);
+    }
   }
-  atualizar(req, res) {
+  async atualizar(req, res) {
     const { id } = req.params;
+    try {
+      const produto = await produtoService.atualizar(id, req.body);
 
-    let produto = produtoService.atualizar(id, req.body);
-
-    return res.json(produto);
+      return res.json(produto);
+    } catch (error) {
+      console.error(error);
+    }
   }
-  deletar(req, res) {
+  async deletar(req, res) {
     const { id } = req.params;
-    
-    return res.send(produtoService.deletar(id));
+    try {
+      return res.send(await produtoService.deletar(id));
+    } catch(error) {
+      console.error(error);
+    }
   }
 }
 
