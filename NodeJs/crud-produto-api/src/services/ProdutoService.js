@@ -1,8 +1,14 @@
 const ProdutoModel = require("../models/ProdutoModel");
+const CategoriaModel = require("../models/CategoriaModel");
 const { where } = require('sequelize');
 
 async function obterTodos() {
-  return await ProdutoModel.findAll();
+  return await ProdutoModel.findAll({
+    include:{
+      model: CategoriaModel,
+      attributes: ["descricao"]
+    }
+  });
 }
 
 async function obterPorId(id) {
