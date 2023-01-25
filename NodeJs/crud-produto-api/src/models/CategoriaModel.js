@@ -1,10 +1,10 @@
-const { Model, DataTypes } = require('sequelize')
+const { Model, DataTypes } = require('sequelize');
 
 class CategoriaModel extends Model {
   static init(connection) {
     super.init({
       descricao: DataTypes.STRING,
-    },{
+    }, {
       sequelize: connection,
       schema: 'public',
       tableName: 'categorias',
