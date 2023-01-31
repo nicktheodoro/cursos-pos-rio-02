@@ -26,6 +26,20 @@ const NaoEncontradoError = class NaoEncontradoError {
   }
 }
 
+const NaoAutorizadoError = class NaoAutorizadoError {
+  /**
+   * Classe utilizada para exceções de acessos ou recursos não autorizados.
+   * @param {Number} status 
+   * @param {String} mensagem 
+   */
+  constructor(status, mensagem) {
+    this.status = status || 404;
+    this.message = mensagem || "Não Autorizado.";
+    this.name = "NaoAutorizado";
+    this.stack = (new Error()).stack;
+  }
+}
+
 const AplicacaoError = class AplicacaoError {
   /**
    * Classe utilizada para exceções de erros interno da aplicação.
@@ -43,5 +57,6 @@ const AplicacaoError = class AplicacaoError {
 module.exports = {
   ModeloInvalidoError,
   NaoEncontradoError,
+  NaoAutorizadoError,
   AplicacaoError
 }

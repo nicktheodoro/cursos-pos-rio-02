@@ -22,4 +22,10 @@ routes.post("/categorias", categoriaController.cadastrar);
 routes.put("/categorias/:id", categoriaController.atualizar);
 routes.delete("/categorias/:id", categoriaController.deletar);
 
+const UsuarioController = require("./src/controllers/UsuarioController");
+const usuarioController = new UsuarioController();
+
+// Rotas de Usuarios - Definindo endpoints
+routes.post("/login", usuarioController.login);
+
 module.exports = routes;
