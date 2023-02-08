@@ -13,7 +13,16 @@ function criarToken(usuario) {
   return token;
 }
 
+function gerarDataExpiracao() {
+  const data = new Date();
+  const duracao = process.env.DURACAO_TOKEN * 60000;
+  const dataExpiracao = new Date(data.getTime() + duracao);
+
+  return dataExpiracao;
+}
+
 module.exports = {
   gerarHashDaSenha,
-  criarToken
+  criarToken,
+  gerarDataExpiracao
 }
