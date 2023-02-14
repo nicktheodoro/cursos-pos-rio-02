@@ -2,11 +2,31 @@ const express = require('express');
 // Trabalha com as rotas
 const routes = express.Router();
 
+const usuarioService = require('./src/services/UsuarioService');
+
+// Esse cara é um interceptor, ele intercepta todas as requisições e aqui 
+// podemos tomar qualquer ação específica.
+routes.use(async (req, res, next) => {
+  const { authorization } = req.headers;
+
+  const autenticado = await usuarioService.validarAutenticacao(authorization);
+
+  if (!autenticado && req.originalUrl !== '/login') {
+    return res.status(401).json({
+      status: 401,
+      message: 'Usuário não autenticado.',
+      name: 'NaoAutorizado'
+    });
+  }
+
+  next();
+});
+
 const ProdutoController = require("./src/controllers/ProdutoController");
 const produtoController = new ProdutoController();
 
 // Rotas de produtos - Definindo endpoints
-routes.get("/produtos", produtoController.obterPorTodos);
+routes.get("/produtos", produtoController.obterTodos);
 routes.get("/produtos/:id", produtoController.obterPorId);
 routes.post("/produtos", produtoController.cadastrar);
 routes.put("/produtos/:id", produtoController.atualizar);
@@ -16,7 +36,7 @@ const CategoriaController = require("./src/controllers/CategoriaController");
 const categoriaController = new CategoriaController();
 
 // Rotas de categorias - Definindo endpoints
-routes.get("/categorias", categoriaController.obterPorTodos);
+routes.get("/categorias", categoriaController.obterTodos);
 routes.get("/categorias/:id", categoriaController.obterPorId);
 routes.post("/categorias", categoriaController.cadastrar);
 routes.put("/categorias/:id", categoriaController.atualizar);
@@ -30,6 +50,9 @@ routes.post("/login", usuarioController.login);
 routes.delete("/logout", usuarioController.logout);
 
 // Rotas de Usuario - Definindo endpoints
+routes.get("/usuarios", usuarioController.obterTodos);
+routes.get("/usuarios/:id", usuarioController.obterPorId);
 routes.post("/usuarios", usuarioController.cadastrar);
+routes.put("/usuarios/:id", usuarioController.atualizar);
 
 module.exports = routes;

@@ -3,7 +3,7 @@ const CategoriaDTO = require("../dtos/CategoriaDTO");
 const { ModeloInvalidoError } = require("../errors/typeError");
 
 class CategoriaController {
-  async obterPorTodos(req, res) {
+  async obterTodos(req, res) {
     try {
       const produtos = await categoriaService.obterTodos();
 

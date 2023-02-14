@@ -1,5 +1,5 @@
 const usuarioService = require('../services/UsuarioService');
-const { NaoAutorizadoError } = require("../errors/typeError");
+const { NaoAutorizadoError, ModeloInvalidoError } = require("../errors/typeError");
 const UsuarioDTO = require("../dtos/UsuarioDTO");
 
 class UsuarioController {
@@ -24,6 +24,51 @@ class UsuarioController {
     try {
       await usuarioService.logout(req.headers.authorization);
       return res.status(204).json();
+    } catch (error) {
+      console.error(error);
+      return res.status(error.status).json(error);
+    }
+  }
+
+  async obterTodos(req, res) {
+    try {
+      const usuarios = await usuarioService.obterTodos();
+      return res.json(usuarios);
+    } catch (error) {
+      console.error(error);
+      return res.status(error.status).json(error);
+    }
+  }
+
+  async obterPorId(req, res) {
+    const { id } = req.params;
+
+    try {
+      if (!id || isNaN(id)) {
+        throw new ModeloInvalidoError(400, 'Id inválido para consulta de usuário.')
+      }
+
+      const usuario = await usuarioService.obterPorId(id);
+      return res.json(usuario);
+    } catch (error) {
+      console.error(error);
+      return res.status(error.status).json(error);
+    }
+  }
+
+  async atualizar(req, res) {
+    const { id } = req.params;
+
+    try {
+      if (!id || isNaN(id)) {
+        throw new ModeloInvalidoError(400, 'Id inválido para atualizar usuário.')
+      }
+
+      const usuarioDTO = new UsuarioDTO({ id, ...req.body });
+      usuarioDTO.modeloValidoAtualizacao();
+
+      const usuario = await usuarioService.atualizar(usuarioDTO);
+      return res.json(usuario);
     } catch (error) {
       console.error(error);
       return res.status(error.status).json(error);

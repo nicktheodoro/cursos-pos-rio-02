@@ -1,7 +1,7 @@
 const produtoService = require("../services/ProdutoService");
 
 class ProdutoController {
-  async obterPorTodos(req, res) {
+  async obterTodos(req, res) {
     try {
       const produtos = await produtoService.obterTodos();
 
