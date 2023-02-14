@@ -8,6 +8,7 @@ class ProdutoController {
       return res.json(produtos);
     } catch (error) {
       console.error(error);
+      return res.status(error.status).json(error);
     }
   }
   async obterPorId(req, res) {
@@ -18,6 +19,7 @@ class ProdutoController {
       return res.json(produto);
     } catch (error) {
       console.error(error);
+      return res.status(error.status).json(error);
     }
   }
   async cadastrar(req, res) {
@@ -27,6 +29,7 @@ class ProdutoController {
       return res.json(produto);
     } catch (error) {
       console.error(error);
+      return res.status(error.status).json(error);
     }
   }
   async atualizar(req, res) {
@@ -37,14 +40,16 @@ class ProdutoController {
       return res.json(produto);
     } catch (error) {
       console.error(error);
+      return res.status(error.status).json(error);
     }
   }
   async deletar(req, res) {
     const { id } = req.params;
     try {
       return res.send(await produtoService.deletar(id));
-    } catch(error) {
+    } catch (error) {
       console.error(error);
+      return res.status(error.status).json(error);
     }
   }
 }
